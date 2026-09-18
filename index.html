@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+
+  <title>여주도자기 AR</title>
+
+  <!-- MindAR -->
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+  <!-- MindAR + A-Frame -->
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+
+</head>
+
+<body style="margin:0; overflow:hidden;">
+
+  <a-scene
+    mindar-image="
+      imageTargetSrc: ./assets/target.mind;
+      maxTrack: 1;
+    "
+    color-space="sRGB"
+    renderer="colorManagement: true,
+              physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <!-- AR에 사용할 이미지 -->
+    <a-assets>
+
+      <img
+        id="targetImage"
+        src="./assets/ceramic.png">
+
+    </a-assets>
+
+
+    <!-- 카메라 -->
+    <a-camera
+      position="0 0 0"
+      look-controls="enabled: false">
+    </a-camera>
+
+
+    <!-- 이미지가 발견됐을 때 -->
+    <a-entity
+      mindar-image-target="targetIndex: 0">
+
+
+      <!-- 도자기 이미지 -->
+      <a-plane
+        src="#targetImage"
+        position="0 0 0"
+        width="1"
+        height="0.7">
+      </a-plane>
+
+
+      <!-- AR 텍스트 -->
+      <a-text
+        value="여주도자기"
+        position="0 0.5 0.1"
+        align="center"
+        color="#ffffff"
+        width="2">
+      </a-text>
+
+
+    </a-entity>
+
+  </a-scene>
+
+</body>
+
+</html>
